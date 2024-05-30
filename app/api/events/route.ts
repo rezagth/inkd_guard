@@ -1,12 +1,15 @@
-import fs from 'fs';
-import path from 'path';
-import { NextRequest, NextResponse } from 'next/server';
+import fs from "fs";
+import path from "path";
+import { NextRequest, NextResponse } from "next/server";
 
-const EVENTS_FILE = path.join(process.cwd(), 'events.json');
+const EVENTS_FILE = path.join(process.cwd(), "events.json");
 
 export async function GET() {
   if (!fs.existsSync(EVENTS_FILE)) {
-    return NextResponse.json({ error: 'Events file not found' }, { status: 404 });
+    return NextResponse.json(
+      { error: "Events file not found" },
+      { status: 404 }
+    );
   }
   const data = fs.readFileSync(EVENTS_FILE);
   const events = JSON.parse(data.toString());
@@ -22,5 +25,5 @@ export async function POST(req: NextRequest) {
   }
   events.push(newEvent);
   fs.writeFileSync(EVENTS_FILE, JSON.stringify(events, null, 2));
-  return NextResponse.json({ message: 'Event added' }, { status: 201 });
+  return NextResponse.json({ message: "Event added" }, { status: 201 });
 }
