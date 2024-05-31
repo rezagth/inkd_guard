@@ -35,3 +35,12 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 # inkd_guard
+
+Reste a faire :
+- Gestion des user
+- Dashboard admin
+- faire en sorte que les entrée créer par l'utilisateur peut etre que vue par lui et l'admin et dans son historique d'entrée il voit que ses entrées.
+- gestionnaire de ronde
+- landing page
+- navbar
+- etc
