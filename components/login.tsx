@@ -1,13 +1,17 @@
 "use client";
 import { useState, FormEvent } from "react";
-// import { useRouter } from "next/router"; // Importez useRouter pour la redirection
+// Importation de useRouter est commentée car nous utilisons window.location pour la redirection
+// import { useRouter } from "next/router";
 
 export default function Login() {
+  // État pour gérer les entrées de l'utilisateur et l'état de chargement
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  // const router = useRouter(); // Utilisez useRouter pour la redirection
+  // Instance de useRouter est commentée car nous utilisons window.location pour la redirection
+  // const router = useRouter();
 
+  // Fonction asynchrone pour gérer la soumission du formulaire de connexion
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoading(true);
@@ -24,8 +28,8 @@ export default function Login() {
       if (data) {
         const jsonData = JSON.parse(data);
         console.log("Connexion réussie");
-        // router.push("/dashboard"); // Redirigez vers le tableau de bord après la connexion réussie
-        window.location.href = "/maincourante"; // Utilisez window.location.href pour la redirection
+        // Redirection vers la page principale après une connexion réussie
+        window.location.href = "/maincourante";
       } else {
         console.log("Aucune donnée reçue");
         setIsLoading(false);
@@ -35,14 +39,15 @@ export default function Login() {
       const errorData = await response.text();
       try {
         const errorJson = JSON.parse(errorData);
-        alert(errorJson.message); // Utilisez alert pour afficher l'erreur à l'utilisateur
+        alert(errorJson.message); // Affichage de l'erreur à l'utilisateur
       } catch {
-        alert(errorData); // Affichez l'erreur si elle n'est pas en JSON
+        alert(errorData); // Affichage de l'erreur si elle n'est pas en JSON
       }
       setIsLoading(false);
     }
   }
 
+  // Structure JSX du formulaire de connexion
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
