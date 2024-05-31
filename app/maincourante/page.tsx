@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import EventDialog from "@/components/EventDialog";
-import EventTable from "@/components/EventTable";
+import EventDialog from "@/components/maincourante/EventDialog";
+import EventTable from "@/components/maincourante/EventTable";
 
 const MaincourantePage = () => {
   const [isClient, setIsClient] = useState(false);

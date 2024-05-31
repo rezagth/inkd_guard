@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import DateTimePicker from "@/components/DateTimePicker";
+import DateTimePicker from "@/components/maincourante/DateTimePicker";
 import { motion } from "framer-motion";
 
 const EventDialog = ({ isDialogOpen, setIsDialogOpen, onSubmit }) => {
