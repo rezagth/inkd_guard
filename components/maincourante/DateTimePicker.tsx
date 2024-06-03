@@ -1,3 +1,17 @@
+/**
+ * @type {import("next").NextPage}
+ * @returns {JSX.Element}
+ * @param {string} label
+ * @param {string} name
+ * @param {any} control
+ * @param {boolean} showTimeSelect
+ * @param {string} dateFormat
+ * @param {string} name
+ * @param {any} control
+ * @param {boolean} showTimeSelect
+ * @param {string} dateFormat
+ *
+ */
 import React from "react";
 import { Controller } from "react-hook-form";
 import DatePicker, { registerLocale } from "react-datepicker";

@@ -1,3 +1,19 @@
+/**
+ * @type {import("next").NextPage}
+ * @returns {NextResponse}
+ * @param {NextRequest} req
+ * @param {NextResponse} res
+ * @param {string} email
+ * @param {string} password
+ * @param {boolean} isLoading
+ * @param {function} setEmail
+ * @param {function} setPassword
+ * @param {function} setIsLoading
+ * @param {function} handleLogin
+ * @param {import("react").ReactNode} children
+ * 
+ */
+
 import fs from "fs";
 import path from "path";
 import { NextRequest, NextResponse } from "next/server";

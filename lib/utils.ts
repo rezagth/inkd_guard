@@ -1,3 +1,6 @@
+/**
+ * @type {import("next").NextPage}
+ */
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 

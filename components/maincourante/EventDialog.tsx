@@ -1,3 +1,13 @@
+/**
+ * @type {import("next").NextPage}
+ * @returns {JSX.Element}
+ * @param {boolean} isDialogOpen
+ * @param {function} setIsDialogOpen
+ * @param {function} onSubmit
+ * @param {import("react").ReactNode} children
+ * 
+ */
+
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Button } from "@/components/ui/button";

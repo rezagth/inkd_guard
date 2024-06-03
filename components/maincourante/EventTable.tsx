@@ -1,3 +1,11 @@
+/**
+ * @type {import("next").NextPage}
+ * @returns {JSX.Element}
+ * @param {import("react").ReactNode} events
+ * @param {boolean} isLoading
+ * @param {import("react").ReactNode} children
+ * 
+ */
 import React from "react";
 import {
   CardTitle,
