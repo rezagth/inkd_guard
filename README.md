@@ -54,3 +54,7 @@ Reste a faire :
 - landing page
 - navbar
 - etc
+
+Déjà fait :
+- page main courante avec modal d'ajout d'un événement 
+- page login 
