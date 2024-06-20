@@ -15,7 +15,6 @@ const MaincourantePage = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Move the declaration of fetchEvents above its usage
   const fetchEvents = useCallback(async () => {
     setIsLoading(true);
     try {
@@ -41,6 +40,11 @@ const MaincourantePage = () => {
 
   const handleAddEvent = useCallback(
     async (data: { date: Date; time: Date; description: string }) => {
+      if (!data.date || !data.time || !data.description) {
+        alert("Veuillez remplir tous les champs avant d'ajouter un événement.");
+        return;
+      }
+
       setIsLoading(true);
       try {
         const response = await fetch("/api/events", {
@@ -61,7 +65,7 @@ const MaincourantePage = () => {
         setIsLoading(false);
       }
     },
-    [fetchEvents] // Add fetchEvents to the dependency array
+    [fetchEvents]
   );
 
   return (
