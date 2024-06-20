@@ -1,24 +1,22 @@
-/**
- * @type {import("next").NextPage}
- * @returns {JSX.Element}
- * @param {string} email
- * @param {string} password
- * @param {boolean} isLoading
- * @param {function} setEmail
- * @param {function} setPassword
- * @param {function} setIsLoading
- * @param {function} handleLogin
- * @param {import("react").ReactNode} children
- */
 "use client";
-import { useState, FormEvent } from "react";
-import { ToastProvider, Toast, ToastTitle, ToastDescription, ToastViewport } from "../ui/toast"; // Importez les composants nécessaires
+import { useState, FormEvent, useEffect } from "react";
+import {
+  ToastProvider,
+  Toast,
+  ToastTitle,
+  ToastDescription,
+  ToastViewport,
+} from "../ui/toast";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [toastMessage, setToastMessage] = useState({ title: "", description: "", variant: "default" });
+  const [toastMessage, setToastMessage] = useState({
+    title: "",
+    description: "",
+    variant: "default",
+  });
   const [showToast, setShowToast] = useState(false);
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
@@ -39,11 +37,21 @@ export default function Login() {
       if (data) {
         const jsonData = JSON.parse(data);
         console.log("Connexion réussie");
-        setToastMessage({ title: "Succès", description: "Connexion réussie", variant: "success" });
+        setToastMessage({
+          title: "Succès",
+          description: "Connexion réussie",
+          variant: "success",
+        });
+        // Store user data in session storage
+        sessionStorage.setItem("user", JSON.stringify(jsonData));
         window.location.href = "/maincourante";
       } else {
         console.log("Aucune donnée reçue");
-        setToastMessage({ title: "Erreur", description: "Aucune donnée reçue", variant: "destructive" });
+        setToastMessage({
+          title: "Erreur",
+          description: "Aucune donnée reçue",
+          variant: "destructive",
+        });
         setIsLoading(false);
       }
     } else {
@@ -51,16 +59,38 @@ export default function Login() {
       try {
         const errorJson = JSON.parse(errorData);
         console.error(errorJson.message);
-        setToastMessage({ title: "Erreur", description: "Erreur d'identifiant, réessayez à nouveau", variant: "destructive" });
+        setToastMessage({
+          title: "Erreur",
+          description: "Erreur d'identifiant, réessayez à nouveau",
+          variant: "destructive",
+        });
       } catch {
         console.error("Erreur de connexion");
-        setToastMessage({ title: "Erreur", description: "Erreur d'identifiant, réessayez à nouveau", variant: "destructive" });
+        setToastMessage({
+          title: "Erreur",
+          description: "Erreur d'identifiant, réessayez à nouveau",
+          variant: "destructive",
+        });
       }
       setIsLoading(false);
     }
 
     setShowToast(true); // Show toast after setting the message
   }
+
+  // Vérifier si l'utilisateur est déjà connecté
+  const checkLoginStatus = () => {
+    const user = sessionStorage.getItem("user");
+    if (user) {
+      console.log("Utilisateur déjà connecté");
+      window.location.href = "/maincourante";
+    }
+  };
+
+  // Appeler checkLoginStatus au montage du composant
+  useEffect(() => {
+    checkLoginStatus();
+  }, []);
 
   return (
     <ToastProvider>
@@ -125,7 +155,16 @@ export default function Login() {
           </button>
         </form>
         {showToast && (
-          <Toast variant={toastMessage.variant} className={toastMessage.variant === "success" ? "toast-success" : toastMessage.variant === "destructive" ? "toast-destructive" : ""}>
+          <Toast
+            variant={toastMessage.variant}
+            className={
+              toastMessage.variant === "success"
+                ? "toast-success"
+                : toastMessage.variant === "destructive"
+                ? "toast-destructive"
+                : ""
+            }
+          >
             <ToastTitle>{toastMessage.title}</ToastTitle>
             <ToastDescription>{toastMessage.description}</ToastDescription>
           </Toast>
